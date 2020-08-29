@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+   <style>
+       body{
+  margin: 0;
+  height: 100vh;
+  -webkit-background: linear-gradient(#BED8D4,#78D5D7);
+  -moz-background: linear-gradient(#BED8D4,#78D5D7);
+  -o-background: linear-gradient(#BED8D4,#78D5D7);
+  background: linear-gradient(#BED8D4,#78D5D7);
+}
+
+*{
+  font-family: 'Roboto', sans-serif;
+}
+
+#container{
+  position: absolute;
+  width: 350px;
+  height: 300px;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-background:whitesmoke;
+ -moz-background:whitesmoke;
+  -o-background:whitesmoke;
+  background:whitesmoke;
+  border-radius: 5px;
+}
+
+#head{
+  text-align: center;
+  font-weight: 600;
+  font-size: 2.0em;
+  color:solid black;
+  text-shadow: 0px 1px black;
+}
+
+table{
+  width: 100%;
+  color: solid black;
+  height: 100%;
+}
+
+td{
+  height: 20%;
+  text-align:center;
+  opacity: .7;
+  bottom-bottom: 1px solid transparent;
+}
+
+td:hover{
+  opacity: 1;
+  border-bottom:  1px solid black;
+}
+
+#footer{
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2em;
+  color: white;
+  position: fixed;
+  -webkit-transform: translate(90vw,90vh);
+  -moz-transform: translate(90vw,90vh);
+  transform: translate(90vw,90vh);
+  transform: translate(90vw,90vh);
+}
+
+
+</style>
+</head>
+<body>
+    <h1 style="font: size 200;font-family:'Times New Roman', Times, serif;color: black;">Calculator</h1>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,600" rel="stylesheet">
+<div id='container'>
+  <table>
+    <tr>
+      <td id='head' colspan='4'></td>
+    </tr>
+    <tr>
+      <td id='seven'>7</td>
+      <td id='eight'>8</td>
+      <td id='nine'>9</td>
+      <td id='divide'>/</td>
+    </tr>
+    <tr>
+      <td id='four'>4</td>
+      <td id='five'>5</td>
+      <td id='six'>6</td>
+      <td id='multiply'>*</td>
+    </tr>
+    <tr>
+      <td id='one'>1</td>
+      <td id='two'>2</td>
+      <td id='three'>3</td>
+      <td id='minus'>-</td>
+    </tr>
+    <tr>
+      <td id='dot'>.</td>
+      <td id='zero'>0</td>
+      <td id='equals'>=</td>
+      <td id='plus'>+</td>
+    </tr>
+  </table>
+</div>
+<div id='footer'>Gayathri</div>
+    <script>
+        document.getElementById("zero").addEventListener("click", Zero);
+document.getElementById("one").addEventListener("click", One);
+document.getElementById("two").addEventListener("click", Two);
+document.getElementById("three").addEventListener("click", Three);
+document.getElementById("four").addEventListener("click", Four);
+document.getElementById("five").addEventListener("click", Five);
+document.getElementById("six").addEventListener("click", Six);
+document.getElementById("seven").addEventListener("click", Seven);
+document.getElementById("eight").addEventListener("click", Eight);
+document.getElementById("nine").addEventListener("click", Nine);
+document.getElementById("dot").addEventListener("click", Dot);
+document.getElementById("plus").addEventListener("click", Plus);
+document.getElementById("minus").addEventListener("click", Minus);
+document.getElementById("multiply").addEventListener("click", Multiply);
+document.getElementById("divide").addEventListener("click", Divide);
+document.getElementById("equals").addEventListener("click", Equals);
+
+var firstNumber = 0;
+var operator = "";
+
+function Zero() {
+  if (document.getElementById("head").innerHTML != '0' &&
+    document.getElementById("head").innerHTML.length <= 16) {
+    document.getElementById("head").innerHTML += '0';
+  }
+}
+
+function One() {
+  if (document.getElementById("head").innerHTML.length <= 16) {
+    document.getElementById("head").innerHTML += '1';
+  }
+}
+
+function Two() {
+  if (document.getElementById("head").innerHTML.length <= 16) {
+    document.getElementById("head").innerHTML += '2';
+  }
+}
+
+function Three() {
+  if (document.getElementById("head").innerHTML.length <= 16) {
+    document.getElementById("head").innerHTML += '3';
+  }
+}
+
+function Four() {
+  if (document.getElementById("head").innerHTML.length <= 16) {
+    document.getElementById("head").innerHTML += '4';
+  }
+}
+
+function Five() {
+  if (document.getElementById("head").innerHTML.length <= 16) {
+    document.getElementById("head").innerHTML += '5';
+  }
+}
+
+function Six() {
+  if (document.getElementById("head").innerHTML.length <= 16) {
+    document.getElementById("head").innerHTML += '6';
+  }
+}
+
+function Seven() {
+  if (document.getElementById("head").innerHTML.length <= 16) {
+    document.getElementById("head").innerHTML += '7';
+  }
+}
+
+function Eight() {
+  if (document.getElementById("head").innerHTML.length <= 16) {
+    document.getElementById("head").innerHTML += '8';
+  }
+}
+
+function Nine() {
+  if (document.getElementById("head").innerHTML.length <= 16) {
+    document.getElementById("head").innerHTML += '9';
+  }
+}
+
+function Dot() {
+  if (document.getElementById("head").innerHTML.length <= 16 && TooManyDots() === false) {
+    document.getElementById("head").innerHTML += '.';
+  }
+}
+
+function TooManyDots() {
+  var counter = 0;
+  for (var i = 0; i <= document.getElementById("head").innerHTML.length; i++) {
+    if (document.getElementById("head").innerHTML.charAt(i) === '.') {
+      counter += 1;
+    }
+    if (counter > 0) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function Plus(){
+  if(document.getElementById("head").innerHTML.length > 0 && document.getElementById("head").innerHTML != '.'){
+    firstNumber = document.getElementById("head").innerHTML;
+    document.getElementById("head").innerHTML = "";
+    operator = "plus";
+  }
+}
+
+function Minus(){
+  if(document.getElementById("head").innerHTML.length > 0 && document.getElementById("head").innerHTML != '.'){
+    firstNumber = document.getElementById("head").innerHTML;
+    document.getElementById("head").innerHTML = "";
+    operator = "minus";
+  }
+}
+
+function Multiply(){
+  if(document.getElementById("head").innerHTML.length > 0 && document.getElementById("head").innerHTML != '.'){
+    firstNumber = document.getElementById("head").innerHTML;
+    document.getElementById("head").innerHTML = "";
+    operator = "multiply";
+  }
+}
+
+function Divide(){
+  if(document.getElementById("head").innerHTML.length > 0 && document.getElementById("head").innerHTML != '.'){
+    firstNumber = document.getElementById("head").innerHTML;
+    document.getElementById("head").innerHTML = "";
+    operator = "divide";
+  }
+}
+
+function Equals(){
+  if(document.getElementById("head").innerHTML.length > 0 && document.getElementById("head").innerHTML != '.'){
+    if(operator === "plus"){
+      document.getElementById("head").innerHTML = parseFloat(firstNumber) + parseFloat(document.getElementById("head").innerHTML);
+      firstNumber = document.getElementById("head").innerHTML;
+    }
+    
+    if(operator === "minus"){
+      document.getElementById("head").innerHTML = parseFloat(firstNumber) - parseFloat(document.getElementById("head").innerHTML);
+      firstNumber = document.getElementById("head").innerHTML;
+    }
+    
+    if(operator === "multiply"){
+      document.getElementById("head").innerHTML = parseFloat(firstNumber) * parseFloat(document.getElementById("head").innerHTML);
+      firstNumber = document.getElementById("head").innerHTML;
+    }
+    
+        if(operator === "divide"){
+      document.getElementById("head").innerHTML = parseFloat(firstNumber) / parseFloat(document.getElementById("head").innerHTML);
+      firstNumber = document.getElementById("head").innerHTML;
+    }
+  }
+}
+
+
+
+
+    </script>
+
+    
+</body>
+</html>
